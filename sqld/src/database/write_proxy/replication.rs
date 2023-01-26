@@ -8,7 +8,7 @@
 ///! `PeriodicDbUpdater::run` method does. This will cause libsql's `xFrames` to get called. We
 ///! will intercept this call thanks to our implementation of `WalHook`, and then call the
 ///! underlying WAL methods with the WAL pages we got from the writer, instead of that from the
-///! dummy write. We then purposedly make xFrame return an error to invalidate any state the dummy
+///! dummy write. We then purposely make xFrame return an error to invalidate any state the dummy
 ///! write may have cause in-memory.
 ///!
 ///! This relies on the fact that the layout of the WAL from the reader will match that of the
@@ -153,12 +153,12 @@ unsafe impl WalHook for ReadReplicationHook {
 
             if ret == 0 {
                 debug_assert!(all_applied(page_headers));
-                // persist new commited index
+                // persist new committed index
                 self.last_applied_index_file
                     .write_all_at(&attempted_commit_index.to_le_bytes(), size_of::<u64>() as _)
                     .unwrap();
                 self.last_applied_index.replace(attempted_commit_index);
-                // remove commited entries.
+                // remove committed entries.
                 self.buffer.drain(..truncate);
                 tracing::trace!("applied frame batch");
             } else {

@@ -51,7 +51,7 @@ pub unsafe trait WalHook {
     }
 }
 
-/// Wal implemementation that just proxies calls to the wrapped WAL methods implementation
+/// Wal implementation that just proxies calls to the wrapped WAL methods implementation
 unsafe impl WalHook for () {}
 
 impl WalMethodsHook {

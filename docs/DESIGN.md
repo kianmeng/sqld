@@ -11,7 +11,7 @@ The `sqld` consists of a:
 * Replica servers (optional)
 * mvSQLite backend (optional)
 
-The client provides a SQLite ABI compatible inteface as a drop-in replacement for applications using libSQL or SQLite. The client library transforms SQLite C API calls into PostgreSQL wire protocol messages and sends them to the primary server.
+The client provides a SQLite ABI compatible interface as a drop-in replacement for applications using libSQL or SQLite. The client library transforms SQLite C API calls into PostgreSQL wire protocol messages and sends them to the primary server.
 
 The primary server is a `sqld` process, which servers SQLite dialect over the PostgreSQL wire protocol. The server can either be backed by single-node `libSQL` database or by a mvSQLite backend, which provides improved write concurrency, high availability, and fault tolerance using FoundationDB.
 
